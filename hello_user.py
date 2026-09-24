@@ -1,12 +1,10 @@
 #NS, hello user
-
+import random
+ducks = 1
+goose = random.randint(1,11)
 while True:
-    name = input("Hi, whats your name? ").strip().title()
-    if name.isnumeric():
-        print("please type in letters!")
-    elif " "in name:
-        print("Please only enter first name!")
-    else:
+    if ducks == goose:
         break
-
-print(f"Hello {name}!")
+    print("duck......")
+    ducks += 1
+print("GOOSEEEEEEEEEEEEEEEEE. ")
