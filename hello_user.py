@@ -8,3 +8,4 @@ while True:
     print("duck......")
     ducks += 1
 print("GOOSEEEEEEEEEEEEEEEEE. ")
+
