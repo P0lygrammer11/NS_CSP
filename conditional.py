@@ -10,7 +10,7 @@ if time < 1200 and time > 500 :
 elif time < 1700:
     print("Good Afternoon")
     id day != "saturday" and day != "sunday"
-elif time <2000: 
+elif time <2000:
     print("Good Evening")
 else :
     print("Good Night")

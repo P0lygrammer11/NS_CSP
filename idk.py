@@ -1,52 +1,34 @@
-# JD - Password Strength Checker Assignment
+# NS - Number Guessing Game Assignment
 
-# 1. Get user input and save it to a variable
-password = input("What is your password: ")
+import random
 
-# 2. Check each individual rule
-has_length = len(password) >= 8
-has_upper = any(char.isupper() for char in password)
-has_lower = any(char.islower() for char in password)
-has_digit = any(char.isdigit() for char in password)
+# --- CONFIGURATION & DOCUMENTATION ---
+# Secret number range: 1 to 100
+LOW_RANGE = 1
+HIGH_RANGE = 100
 
-# Define a set of common symbols to check against
-symbols = "!@#$%^&*"
-has_symbol = any(char in symbols for char in password)
+# Limited number of attempts: 6
+MAX_ATTEMPTS = 6
+# ------------------------------------
 
-# 3. Print True/False results for each rule
-print(f"\nAt least 8 characters: {has_length}")
-print(f"Has an uppercase letter: {has_upper}")
-print(f"Has a lowercase letter: {has_lower}")
-print(f"Has a number: {has_digit}")
-print(f"Has a symbol: {has_symbol}")
+# Generate the secret random number
+secret_number = random.randint(LOW_RANGE, HIGH_RANGE)
 
-# 4. Calculate total score (how many rules are met)
-rules_met = sum([has_length, has_upper, has_lower, has_digit, has_symbol])
+print(f"I'm thinking of a number between {LOW_RANGE} and {HIGH_RANGE}. You have {MAX_ATTEMPTS} tries to guess it!")
 
-# Determine strength rating
-if rules_met == 5:
-    strength = "Strong"
-elif rules_met >= 3:
-    strength = "Medium"
-else:
-    strength = "Weak"
-
-print(f"\nYour password strength is: {strength}")
-
-# 5. Provide feedback on missing rules if the password is not Strong
-if strength != "Strong":
-    missing_items = []
+# Loop structure to track attempts
+for attempt in range(1, MAX_ATTEMPTS + 1):
+    # Prompt the player for their guess
+    guess = int(input(f"Guess #{attempt}: "))
     
-    if not has_length:
-        missing_items.append("at least 8 characters")
-    if not has_upper:
-        missing_items.append("an uppercase letter")
-    if not has_lower:
-        missing_items.append("a lowercase letter")
-    if not has_digit:
-        missing_items.append("a number")
-    if not has_symbol:
-        missing_items.append("a symbol")
-        
-    # Join missing elements with a comma
-    print(f"To make it Strong, add: {', '.join(missing_items)}")
+    # Check the guess and provide accurate feedback
+    if guess == secret_number:
+        print(f"Correct! You guessed it in {attempt} tries!")
+        break  # End the game immediately upon correct guess
+    elif guess < secret_number:
+        print("Too low!")
+    else:
+        print("Too high!")
+else:
+    # This else block runs only if the loop finishes naturally without hitting the 'break'
+    print(f"You're out of guesses! The number was {secret_number}.")
