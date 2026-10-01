@@ -9,7 +9,7 @@ def caesar_shift(message, shift):
     the_result = ""
     for char in message:
         if char.isupper():
-            the_resultresult += (
+            the_result += (
                 chr((ord(char) - ord("A") + shift) % 26 + ord("A"))
             )
         elif char.islower():
@@ -17,7 +17,7 @@ def caesar_shift(message, shift):
                 chr((ord(char) - ord("a") + shift) % 26 + ord("a"))
             )
         else:
-            the_resultresult += char
+            the_result += char
     return the_result
 
 
