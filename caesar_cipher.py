@@ -2,7 +2,7 @@
 
 choice = input("Would you like to (E)encrypt or (D)decrypt a message? ").strip().capitalize()
 message = input("Enter your message: ").strip()
-shift = int(input("Enter shift amount: ").strip()
+shift = int(input("Enter shift amount: ").strip())
 
 
 def caesar_shift(message, shift):
