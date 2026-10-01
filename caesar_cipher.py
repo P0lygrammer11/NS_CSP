@@ -1,15 +1,32 @@
 #Ns, Caesar Cipher
 
-choice = input("would you like to (E)Encrypt or (D)Decrypt a message? ")
-message = input("what is your message? ")
-shift = input("enter a sift amount: ")
-encrypt = ""
-shift = 0
-message = ""
+choice = input("Would you like to (E)encrypt or (D)decrypt a message? ").strip().capitalize()
+message = input("Enter your message: ").strip()
+shift = int(input("Enter shift amount: ").strip())
 
 
-for letter in message:
-    if letter.isalpha():
-        
-        
+def caesar_shift(message, shift):
+    the_result = ""
+    for char in message:
+        if char.isupper():
+            the_resultresult += (
+                chr((ord(char) - ord("A") + shift) % 26 + ord("A"))
+            )
+        elif char.islower():
+            the_result += (
+                chr((ord(char) - ord("a") + shift) % 26 + ord("a"))
+            )
+        else:
+            the_resultresult += char
+    return the_result
+
+
+if choice == "E":
+    the_result = caesar_shift(message, shift)
+    print(f"Your encrypted message is: {the_result}")
+
+elif choice == "D":
+    the_result = caesar_shift(message, -shift)
+    print(f"Your decrypted message is: {the_result}")
+
 
