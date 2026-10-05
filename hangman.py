@@ -13,7 +13,7 @@ print(hangman_word)
 #pull win and lose totals from the other txt file annd save them as 2 seperate variabales
 
 with open ("hangman_stats.txt" , "r") as file:
-    win , loss = map(int, file.read().strip().split(","))
+    content  = file.read(", ").split()
 
 
 # built the hangman game
@@ -27,23 +27,88 @@ wrong_guesses = []
 guessed_letter = []
 
 #function to display the hangman (needs the nmber of wrong guesses)
-"""
-    ----
-   |    |
-   |    O
-   |   /|\\
-   |   /\\
-   |
-   ---------"""
+def display_hangman(wrong_guesses):
+    stages = [
+        """
+           ----
+
+          |    |
+          |    
+          |   
+          |   
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+          |   
+          |   
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+
+          |    |
+          |   
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+
+          |   /|
+          |   
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+
+          |   /|\\
+          |   
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+
+          |   /|\\
+          |   /
+          |
+        ---------""",
+        """
+           ----
+
+          |    |
+          |    O
+
+          |   /|\\
+          |   / \\
+          |
+        ---------"""
+    ]
+    print(stages[wrong_guesses])
+
 
 
 
 #function to show the letters and spaces(the correct word, letters that have been guessed)
-def abc(correct , guessed_letter):
+def abc(hangman_word, guessed_letter):
         #variabel for display word(starts as an empty string)
-     display_word = ""
+    display_word = ""
 #loop over the correct word
-    for letter in correct:
+    for letter in hangman_word:
     #variabel for display word(starts as an empty string)
     #check if letter have been guessed
         if letter in guessed_letter:
@@ -57,9 +122,9 @@ def abc(correct , guessed_letter):
     return display_word
 
 #main gam e loop(while true)
-while true:
+while True:
     #call function to show hangman
-    display_word(len(wrong_guesses))
+    display_hangman(len(wrong_guesses))
     #print function call to show display word
     current_display = abc(hangman_word, guessed_letter)
     print("word: " + current_display)
@@ -81,7 +146,7 @@ while true:
         # increase win total
         win += 1
         # update 
-        with open("hangman_stats.txt", "w") as fil:
+        with open("hangman_stats.txt", "w") as file:
             file.write(f"{win}, {loss}")
         #asd if they wanna play again
         play_again = input("do you want to play again? (y/n): ").lower()
@@ -104,9 +169,9 @@ while true:
         loss  += 1
         #update
         with open("hangman_stats.txt", "w") as file:
-            file.write(f"{win_total}, {loss,total}")
+            file.write(f"{win}, {loss}")
         #ask if they want to play again
-        play_again = input("Do you want to play again? (y/n): ").lower() 
+        play_again = input("Do you want to play again? (y/n): ").lower()
         if play_again == "y":
             hangman_word = random.choice(words).lower()
             print(hangman_word)
