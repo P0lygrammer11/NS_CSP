@@ -9,7 +9,7 @@ print(hangman_word)
 
 
 #create another file holds win/loss
-
+with open ("
 
 
 #use split(", ") on the contents of word txt document to create your list of words
