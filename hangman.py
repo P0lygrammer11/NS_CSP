@@ -138,8 +138,9 @@ while True:
         print("please enter 1 letter!")
         continue
     #add the letter to the list of guessed letters
-    if guess not in guessed_letter:
-        guessed_letter.append(guess)
+    if guess in guessed_letter:
+        print("you have already guessed that letter!")
+    guessed_letter.append(guess)
     #check if not letter in word:
     if guess not in hangman_word:
         #increase incorrect guesses
@@ -181,7 +182,6 @@ while True:
         play_again = input("Do you want to play again? (y/n): ").lower()
         if play_again == "y":
             hangman_word = random.choice(words).lower()
-            print(hangman_word)
             wrong_guesses = []
             guessed_letter = []
             continue
