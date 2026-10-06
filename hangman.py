@@ -13,7 +13,10 @@ print(hangman_word)
 #pull win and lose totals from the other txt file annd save them as 2 seperate variabales
 
 with open ("hangman_stats.txt" , "r") as file:
-    content  = file.read(", ").split()
+    content  = file.read().split(", ")
+
+win = int(content[0])
+loss = int(content[1])
 
 
 # built the hangman game
