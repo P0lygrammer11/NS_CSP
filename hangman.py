@@ -5,15 +5,14 @@ import random
 with open ("hangman_word.txt" , "r") as file:
     words = file.read().splitlines()
 hangman_word = random.choice(words).lower()
-print(hangman_word)
-
+print("Loading word list from words.txt...")
 
 #create another file holds win/loss
 #use split(", ") on the contents of word txt document to create your list of words
 #pull win and lose totals from the other txt file annd save them as 2 seperate variabales
 
 with open ("hangman_stats.txt" , "r") as file:
-    content  = file.read().split(", ")
+    content  = file.read().split(",")
 
 win = int(content[0])
 loss = int(content[1])
@@ -131,8 +130,13 @@ while True:
     #print function call to show display word
     current_display = abc(hangman_word, guessed_letter)
     print("word: " + current_display)
+    print("guessed letter:", " ".join(guessed_letter))
+    print("wrong guesses:", " ".join(wrong_guesses))
     # create variable and ask user to guess a letter
     guess = input("guess a letter: ").lower().strip()
+    if len(guess) != 1 or not guess.isalpha():
+        print("please enter 1 letter!")
+        continue
     #add the letter to the list of guessed letters
     if guess not in guessed_letter:
         guessed_letter.append(guess)
